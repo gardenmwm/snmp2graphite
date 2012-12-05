@@ -1,0 +1,20 @@
+digraph G
+{
+	compound=true
+	rankdir=LR
+	subgraph cluster_Poller_Pool{
+	label="Poller Pool"
+	"Poller 1"
+	"Poller ..."
+	}
+	"Config File" -> "Configurator"
+	"Configurator" -> "Scheduler"
+	"Scheduler" -> "Poller 1" [lhead=cluster_Poller_Pool,len=4]
+	"Poller 1" -> "Host"
+	"Host" -> "Poller 1"
+	"Poller 1" -> "Graphite Writer"
+	"Graphite Writer"  -> "Graphite"
+	"Poller ..." -> "Host ..."
+	"Host ..." -> "Poller ..."
+	"Poller ..." -> "Graphite Writer"
+}
