@@ -4,7 +4,7 @@ import time
 
 SCHEDULES = {}
 SCHEDULER = sched.scheduler(time.time, time.sleep)
-debug=1
+#debug=0
 
 def makeschedules(hosts):
     if debug: print "Making Schedules"

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+BINPATH=`dirname $0`
+python "$BINPATH/../snmp2graphite/main.py" $@

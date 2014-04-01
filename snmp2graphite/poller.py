@@ -10,7 +10,7 @@ import sys
 import multiprocessing
 from multiprocessing import Queue
 import graphitesender
-debug = 1
+#debug = 0
 
 CollectorQueue = Queue()
 exitFlag = 0

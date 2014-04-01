@@ -11,7 +11,7 @@ import multiprocessing
 GraphiteQueue = Queue()
 exitFlag = 0
 graphitesenderpool = []
-debug = 1
+#debug = 0
 CARBON_SERVER = "127.0.0.1"
 CARBON_PORT = 2003
 CARBONSOCKET = socket()
@@ -30,7 +30,7 @@ def SendToGraphite(datum):
 	except:
 		print "Error sending data for ",
 		print datum
-	
+
 
 def ProcessGraphiteQueue():
     while not exitFlag:
