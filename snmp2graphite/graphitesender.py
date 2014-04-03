@@ -16,22 +16,6 @@ CARBON_SERVER = "127.0.0.1"
 CARBON_PORT = 2003
 CARBONSOCKET = socket()
 
-
-def SendToGraphite(datum):
-    """
-    Sends data to graphite
-    Datum is [Name,Value,Time]
-    """
-    if debug: print "SendToGraphite %s" % (datum)
-    if datum != "NoData":
-        try:
-		GraphiteString = datum[0] + " " + datum[1] + " " + str(datum[2]) + "\n"
-        	CARBONSOCKET.sendall(GraphiteString)
-	except:
-		print "Error sending data for ",
-		print datum
-
-
 def ProcessGraphiteQueue():
     while not exitFlag:
         datum = GraphiteQueue.get()
@@ -52,3 +36,19 @@ def StartGraphitePool():
         graphitesenderpool.append(p)
         p.start()
 
+
+class GraphiteSender():
+    def __init__(CARBON_SERVER="127.0.0.1",CARBON_PORT=2003):
+        self.CARBONSOCKET = socket()
+        self.CARBON_SERVER=CARBON_SERVER
+        self.CARBON_PORT=CARBON_PORT
+
+    def SendDatum(self):
+            if debug: print "SendToGraphite %s" % (datum)
+            if datum != "NoData":
+                try:
+                    GraphiteString = datum[0] + " " + datum[1] + " " + str(datum[2]) + "\n"
+                    self.CARBONSOCKET.sendall(GraphiteString)
+                except:
+                    print "Error sending data for ",
+                    print datum

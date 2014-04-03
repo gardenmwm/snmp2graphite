@@ -5,13 +5,13 @@ Created on Jun 27, 2012
 
 Main starting point for snmp2graphite, reads config files and starts everything
 '''
-import poller, graphitesender, configurator, scheduler
+import poller, graphitesender, scheduler, configurator
 
-config = configurator.ReadConfig()
+config = configurator.Config
 #Setup  Graphite Variables
-graphitesender.CARBON_PORT = int(config[0]['CARBON_PORT'])
-graphitesender.CARBON_SERVER = config[0]['CARBON_SERVER']
-debug=config[0]['DEBUG']
+graphitesender.CARBON_PORT = int(config.GeneralOptions['CARBON_PORT'])
+graphitesender.CARBON_SERVER = config.GeneralOptions['CARBON_SERVER']
+debug=config.GeneralOptions['DEBUG']
 
 
 poller.StartCollectorPool()
